@@ -1,0 +1,206 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@rules_ocaml//build:rules.bzl",
+     "ocaml_archive",
+     "ocaml_module",
+)
+
+OPTS_1 = [
+        "-w",
+        "-3-6-27-32-35"
+]
+
+#############################
+####  Aggregate Targets  ####
+
+##############
+ocaml_archive( #7
+    name     = "cmdliner",
+    manifest   = [
+        ":Cmdliner",
+        ":Cmdliner_arg",
+        ":Cmdliner_base",
+        ":Cmdliner_cline",
+        ":Cmdliner_cmd",
+        ":Cmdliner_docgen",
+        ":Cmdliner_eval",
+        ":Cmdliner_exit",
+        ":Cmdliner_info",
+        ":Cmdliner_manpage",
+        ":Cmdliner_msg",
+        ":Cmdliner_term",
+        ":Cmdliner_term_deprecated",
+        ":Cmdliner_trie"
+    ],
+)
+
+######################## Modules & Signatures ########################
+ocaml_module(
+    name          = "Cmdliner",
+    struct        = "cmdliner.ml",
+    sig           = "cmdliner.mli",
+    opts          = OPTS_1,
+    deps          =  [
+        ":Cmdliner_arg",
+        ":Cmdliner_cmd",
+        ":Cmdliner_eval",
+        ":Cmdliner_info",
+        ":Cmdliner_manpage",
+        ":Cmdliner_term",
+        ":Cmdliner_term_deprecated"
+    ],
+)
+
+ocaml_module(
+    name          = "Cmdliner_arg",
+    struct        = "cmdliner_arg.ml",
+    sig           = "cmdliner_arg.mli",
+    opts          = OPTS_1,
+    deps          =  [
+        ":Cmdliner_base",
+        ":Cmdliner_cline",
+        ":Cmdliner_msg",
+        ":Cmdliner_info",
+        ":Cmdliner_manpage",
+        ":Cmdliner_term"
+    ],
+)
+
+ocaml_module(
+    name          = "Cmdliner_base",
+    struct        = "cmdliner_base.ml",
+    sig           = "cmdliner_base.mli",
+    opts          = OPTS_1,
+    deps          =  [
+        ":Cmdliner_trie"
+    ],
+)
+
+ocaml_module(
+    name          = "Cmdliner_cline",
+    struct        = "cmdliner_cline.ml",
+    sig           = "cmdliner_cline.mli",
+    opts          = OPTS_1,
+    deps          =  [
+        ":Cmdliner_base",
+        ":Cmdliner_msg",
+        ":Cmdliner_trie",
+        ":Cmdliner_info"
+    ],
+)
+
+ocaml_module(
+    name          = "Cmdliner_cmd",
+    struct        = "cmdliner_cmd.ml",
+    sig           = "cmdliner_cmd.mli",
+    opts          = OPTS_1,
+    deps          =  [
+        ":Cmdliner_info",
+        ":Cmdliner_manpage",
+        ":Cmdliner_term"
+    ],
+)
+
+ocaml_module(
+    name          = "Cmdliner_docgen",
+    struct        = "cmdliner_docgen.ml",
+    sig           = "cmdliner_docgen.mli",
+    opts          = OPTS_1,
+    deps          =  [
+        ":Cmdliner_info",
+        ":Cmdliner_manpage"
+    ],
+)
+
+ocaml_module(
+    name          = "Cmdliner_eval",
+    struct        = "cmdliner_eval.ml",
+    sig           = "cmdliner_eval.mli",
+    opts          = OPTS_1,
+    deps          =  [
+        ":Cmdliner_arg",
+        ":Cmdliner_base",
+        ":Cmdliner_cline",
+        ":Cmdliner_docgen",
+        ":Cmdliner_manpage",
+        ":Cmdliner_msg",
+        ":Cmdliner_trie",
+        ":Cmdliner_cmd",
+        ":Cmdliner_info",
+        ":Cmdliner_term"
+    ],
+)
+
+ocaml_module(
+    name          = "Cmdliner_exit",
+    struct        = "cmdliner_exit.ml",
+    sig           = "cmdliner_exit.mli",
+    opts          = OPTS_1,
+)
+
+ocaml_module(
+    name          = "Cmdliner_info",
+    struct        = "cmdliner_info.ml",
+    sig           = "cmdliner_info.mli",
+    opts          = OPTS_1,
+    deps          =  [
+        ":Cmdliner_base",
+        ":Cmdliner_manpage"
+    ],
+)
+
+ocaml_module(
+    name          = "Cmdliner_manpage",
+    struct        = "cmdliner_manpage.ml",
+    sig           = "cmdliner_manpage.mli",
+    opts          = OPTS_1,
+    deps          =  [
+        ":Cmdliner_base"
+    ],
+)
+
+ocaml_module(
+    name          = "Cmdliner_msg",
+    struct        = "cmdliner_msg.ml",
+    sig           = "cmdliner_msg.mli",
+    opts          = OPTS_1,
+    deps          =  [
+        ":Cmdliner_base",
+        ":Cmdliner_docgen",
+        ":Cmdliner_info"
+    ],
+)
+
+ocaml_module(
+    name          = "Cmdliner_term",
+    struct        = "cmdliner_term.ml",
+    sig           = "cmdliner_term.mli",
+    opts          = OPTS_1,
+    deps          =  [
+        ":Cmdliner_cline",
+        ":Cmdliner_info",
+        ":Cmdliner_manpage"
+    ],
+)
+
+ocaml_module(
+    name          = "Cmdliner_trie",
+    struct        = "cmdliner_trie.ml",
+    sig           = "cmdliner_trie.mli",
+    opts          = OPTS_1,
+)
+
+ocaml_module(
+    name          = "Cmdliner_term_deprecated",
+    struct        = "cmdliner_term_deprecated.ml",
+    opts          = OPTS_1,
+    deps          =  [
+        ":Cmdliner_arg",
+        ":Cmdliner_cmd",
+        ":Cmdliner_eval",
+        ":Cmdliner_info",
+        ":Cmdliner_manpage",
+        ":Cmdliner_term"
+    ],
+)
+

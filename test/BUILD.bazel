@@ -1,0 +1,149 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@rules_ocaml//build:rules.bzl",
+     "ocaml_binary",
+     "ocaml_library",
+     "ocaml_ns_library",
+     "ocaml_exec_module",
+     "ocaml_module",
+)
+
+DEPS_1 = [
+    "//src:cmdliner"
+]
+
+##############################
+####  Executable Targets  ####
+ocaml_binary(
+    name     = "test_man.exe",
+    main     = ":Test_man",
+    visibility = ["//visibility:public"],
+)
+
+ocaml_exec_module(
+    name          = "Test_man",
+    struct        = "test_man.ml",
+    deps          = DEPS_1,
+)
+
+ocaml_binary(
+    name     = "test_man_utf8.exe",
+    main     = ":Test_man_utf8",
+    visibility = ["//visibility:public"],
+)
+
+ocaml_exec_module(
+    name          = "Test_man_utf8",
+    struct        = "test_man_utf8.ml",
+    deps          = DEPS_1,
+)
+
+ocaml_binary(
+    name     = "test_pos.exe",
+    main     = ":Test_pos",
+    visibility = ["//visibility:public"],
+)
+
+ocaml_exec_module(
+    name          = "Test_pos",
+    struct        = "test_pos.ml",
+    deps          = DEPS_1,
+)
+
+ocaml_binary(
+    name     = "test_nest.exe",
+    main     = ":Test_nest",
+    visibility = ["//visibility:public"],
+)
+
+ocaml_exec_module(
+    name          = "Test_nest",
+    struct        = "test_nest.ml",
+    deps          = DEPS_1,
+)
+
+ocaml_binary(
+    name     = "test_pos_rev.exe",
+    main     = ":Test_pos_rev",
+    visibility = ["//visibility:public"],
+)
+
+ocaml_exec_module(
+    name          = "Test_pos_rev",
+    struct        = "test_pos_rev.ml",
+    deps          = DEPS_1,
+)
+
+ocaml_binary(
+    name     = "test_pos_all.exe",
+    main     = ":Test_pos_all",
+    visibility = ["//visibility:public"],
+)
+
+ocaml_exec_module(
+    name          = "Test_pos_all",
+    struct        = "test_pos_all.ml",
+    deps          = DEPS_1,
+)
+
+ocaml_binary(
+    name     = "test_pos_left.exe",
+    main     = ":Test_pos_left",
+    visibility = ["//visibility:public"],
+)
+
+ocaml_exec_module(
+    name          = "Test_pos_left",
+    struct        = "test_pos_left.ml",
+    deps          = DEPS_1,
+)
+
+ocaml_binary(
+    name     = "test_pos_req.exe",
+    main     = ":Test_pos_req",
+    visibility = ["//visibility:public"],
+)
+
+ocaml_exec_module(
+    name          = "Test_pos_req",
+    struct        = "test_pos_req.ml",
+    deps          = DEPS_1,
+)
+
+ocaml_binary(
+    name     = "test_opt_req.exe",
+    main     = ":Test_opt_req",
+    visibility = ["//visibility:public"],
+)
+
+ocaml_exec_module(
+    name          = "Test_opt_req",
+    struct        = "test_opt_req.ml",
+    deps          = DEPS_1,
+)
+
+ocaml_binary(
+    name     = "test_term_dups.exe",
+    main     = ":Test_term_dups",
+    visibility = ["//visibility:public"],
+)
+
+ocaml_exec_module(
+    name          = "Test_term_dups",
+    struct        = "test_term_dups.ml",
+    deps          = DEPS_1,
+)
+
+ocaml_binary(
+    name     = "test_with_used_args.exe",
+    main     = ":Test_with_used_args",
+    visibility = ["//visibility:public"],
+)
+
+ocaml_exec_module(
+    name          = "Test_with_used_args",
+    struct        = "test_with_used_args.ml",
+    deps          = DEPS_1,
+)
+
+######################## Modules & Signatures ########################
